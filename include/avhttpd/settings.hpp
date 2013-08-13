@@ -137,8 +137,9 @@ public:
 		std::string str;
 		for (option_item_list::const_iterator f = m_opts.begin(); f != m_opts.end(); f++)
 		{
-			if (f->first != http_options::status_code)
-				str += (f->first + ": " + f->second + "\r\n");
+			if (!f->first.empty())
+				if (f->first[0] != '_')
+					str += (f->first + ": " + f->second + "\r\n");
 		}
 		return str;
 	}
